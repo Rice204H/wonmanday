@@ -10,7 +10,7 @@ export const greeting = {
     rose: "#9173ae",
     paper: "#faf8f5",
   },
-  audio: "assets/audio/garden-piano.wav",
+  audio: "assets/audio/nhacmp3.wav",
   heroImage: "assets/images/violet-garden.webp",
   backgroundImage: "assets/images/violet-garden.webp",
   // Leave empty to use the original SVG flowers, or supply paths relative to public/.
