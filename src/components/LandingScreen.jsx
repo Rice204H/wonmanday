@@ -1,10 +1,5 @@
 import { useRef, useState } from "react";
-import {
-  ArrowUpRight,
-  Flower2,
-  Heart,
-  Sparkles,
-} from "lucide-react";
+import { ArrowUpRight, Flower2, Heart, Sparkles } from "lucide-react";
 import { assetUrl } from "../config/greeting.js";
 import VioletBackground from "./VioletBackground.jsx";
 

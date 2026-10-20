@@ -1,5 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { Flower2, Heart, ArrowUpRight, ArrowLeft, ArrowRight, RotateCcw, Sparkles, Pause } from "lucide-react";
+import {
+  Flower2,
+  Heart,
+  ArrowUpRight,
+  ArrowLeft,
+  ArrowRight,
+  RotateCcw,
+  Sparkles,
+  Pause,
+} from "lucide-react";
 import LandingScreen from "./components/LandingScreen.jsx";
 import FlowerGarden from "./components/FlowerGarden.jsx";
 import GreetingCard from "./components/GreetingCard.jsx";
@@ -15,7 +24,9 @@ const screens = [
 ];
 
 function screenFromLocation() {
-  const index = screens.findIndex((screen) => `#${screen.id}` === window.location.hash);
+  const index = screens.findIndex(
+    (screen) => `#${screen.id}` === window.location.hash,
+  );
   return index < 0 ? 0 : index;
 }
 
@@ -59,7 +70,11 @@ export default function App() {
       className={`site journey-site${motionPaused ? " motion-paused" : ""}`}
       style={theme}
     >
-      <button type="button" className="skip-link" onClick={() => mainRef.current?.focus({ preventScroll: true })}>
+      <button
+        type="button"
+        className="skip-link"
+        onClick={() => mainRef.current?.focus({ preventScroll: true })}
+      >
         Đến nội dung chính
       </button>
       <header className="site-header">
@@ -76,53 +91,128 @@ export default function App() {
           </span>
         </button>
         <nav aria-label="Điều hướng chính">
-          <button type="button" onClick={() => goToScreen(1)} aria-current={currentScreen === 1 ? "step" : undefined}>Khu vườn</button>
-          <button type="button" onClick={() => goToScreen(2)} aria-current={currentScreen === 2 ? "step" : undefined}>Lời chúc</button>
-          <button type="button" onClick={() => goToScreen(2)} className="header-gift">
+          <button
+            type="button"
+            onClick={() => goToScreen(1)}
+            aria-current={currentScreen === 1 ? "step" : undefined}
+          >
+            Khu vườn
+          </button>
+          <button
+            type="button"
+            onClick={() => goToScreen(2)}
+            aria-current={currentScreen === 2 ? "step" : undefined}
+          >
+            Lời chúc
+          </button>
+          <button
+            type="button"
+            onClick={() => goToScreen(2)}
+            className="header-gift"
+          >
             Dành tặng bạn <Heart size={14} strokeWidth={1.5} />
           </button>
         </nav>
       </header>
-      <main id="noi-dung" className="journey-stage" ref={mainRef} tabIndex={-1} aria-label={`Màn hình ${currentScreen + 1}: ${screens[currentScreen].title}`}>
-        <div className="journey-screen" key={currentScreen} data-screen={screens[currentScreen].id}>
-        {currentScreen === 0 && <LandingScreen
-          recipient={recipient}
-          heroImage={greeting.heroImage}
-          backgroundImage={greeting.backgroundImage}
-          onExplore={() => goToScreen(1)}
-        />}
-        {currentScreen === 1 && <FlowerGarden images={greeting.flowerImages} />}
-        {currentScreen === 2 && <GreetingCard greeting={greeting} recipient={recipient} />}
-        {currentScreen === 3 && <section className="closing-note" id="loi-nhan" aria-label="Lời nhắn cuối">
-          <Flower2 size={34} strokeWidth={1} />
-          <p>
-            Thế giới đẹp hơn,
-            <br />
-            vì có <em>bạn.</em>
-          </p>
-          <span>MONG BẠN LUÔN NỞ HOA THEO CÁCH CỦA RIÊNG MÌNH.</span>
-          <button type="button" className="closing-restart" onClick={() => goToScreen(0)}>
-            Một lần nữa, chúc mừng 20/10 <ArrowUpRight size={15} />
-          </button>
-        </section>}
+      <main
+        id="noi-dung"
+        className="journey-stage"
+        ref={mainRef}
+        tabIndex={-1}
+        aria-label={`Màn hình ${currentScreen + 1}: ${screens[currentScreen].title}`}
+      >
+        <div
+          className="journey-screen"
+          key={currentScreen}
+          data-screen={screens[currentScreen].id}
+        >
+          {currentScreen === 0 && (
+            <LandingScreen
+              recipient={recipient}
+              heroImage={greeting.heroImage}
+              backgroundImage={greeting.backgroundImage}
+              onExplore={() => goToScreen(1)}
+            />
+          )}
+          {currentScreen === 1 && (
+            <FlowerGarden images={greeting.flowerImages} />
+          )}
+          {currentScreen === 2 && (
+            <GreetingCard greeting={greeting} recipient={recipient} />
+          )}
+          {currentScreen === 3 && (
+            <section
+              className="closing-note"
+              id="loi-nhan"
+              aria-label="Lời nhắn cuối"
+            >
+              <Flower2 size={34} strokeWidth={1} />
+              <p>
+                Thế giới đẹp hơn,
+                <br />
+                vì có <em>bạn.</em>
+              </p>
+              <span>MONG BẠN LUÔN NỞ HOA THEO CÁCH CỦA RIÊNG MÌNH.</span>
+              <button
+                type="button"
+                className="closing-restart"
+                onClick={() => goToScreen(0)}
+              >
+                Một lần nữa, chúc mừng 20/10 <ArrowUpRight size={15} />
+              </button>
+            </section>
+          )}
         </div>
       </main>
       <footer className="journey-navigation" aria-label="Chuyển màn hình">
-        <button type="button" className="journey-previous" onClick={() => goToScreen(currentScreen - 1)} disabled={currentScreen === 0}>
-          <ArrowLeft size={16} aria-hidden="true" /><span>Quay lại</span>
+        <button
+          type="button"
+          className="journey-previous"
+          aria-label="Quay lại"
+          onClick={() => goToScreen(currentScreen - 1)}
+          disabled={currentScreen === 0}
+        >
+          <ArrowLeft size={16} aria-hidden="true" />
+          <span>Quay lại</span>
         </button>
         <div className="journey-progress">
-          <span className="journey-step-caption">{String(currentScreen + 1).padStart(2, "0")} <span>/ 04</span></span>
+          <span className="journey-step-caption">
+            {String(currentScreen + 1).padStart(2, "0")} <span>/ 04</span>
+          </span>
           <div className="journey-dots" role="group" aria-label="Các màn hình">
-            {screens.map((screen, index) => <button key={screen.id} type="button" onClick={() => goToScreen(index)} aria-label={`${index + 1}. ${screen.title}`} aria-current={index === currentScreen ? "step" : undefined}><span /></button>)}
+            {screens.map((screen, index) => (
+              <button
+                key={screen.id}
+                type="button"
+                onClick={() => goToScreen(index)}
+                aria-label={`${index + 1}. ${screen.title}`}
+                aria-current={index === currentScreen ? "step" : undefined}
+              >
+                <span />
+              </button>
+            ))}
           </div>
         </div>
-        <button type="button" className="journey-next" onClick={() => goToScreen((currentScreen + 1) % screens.length)}>
-          <span>{screens[currentScreen].next}</span>{currentScreen === screens.length - 1 ? <RotateCcw size={16} aria-hidden="true" /> : <ArrowRight size={16} aria-hidden="true" />}
+        <button
+          type="button"
+          className="journey-next"
+          aria-label={screens[currentScreen].next}
+          onClick={() => goToScreen((currentScreen + 1) % screens.length)}
+        >
+          <span>{screens[currentScreen].next}</span>
+          {currentScreen === screens.length - 1 ? (
+            <RotateCcw size={16} aria-hidden="true" />
+          ) : (
+            <ArrowRight size={16} aria-hidden="true" />
+          )}
         </button>
       </footer>
-      <div className="journey-controls-space" aria-hidden="true"><span>GÓI GHÉM BẰNG CẢ TRÁI TIM</span></div>
-      <span className="journey-sr-only" role="status" aria-live="polite">Màn hình {currentScreen + 1} trên 4: {screens[currentScreen].title}</span>
+      <div className="journey-controls-space" aria-hidden="true">
+        <span>GÓI GHÉM BẰNG CẢ TRÁI TIM</span>
+      </div>
+      <span className="journey-sr-only" role="status" aria-live="polite">
+        Màn hình {currentScreen + 1} trên 4: {screens[currentScreen].title}
+      </span>
       <MusicPlayer track={greeting.audio} autoPlay={greeting.autoPlayMusic} />
       <button
         type="button"

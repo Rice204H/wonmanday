@@ -29,18 +29,18 @@ Trang gồm bốn màn hình: chào mừng → khu vườn → thiệp → lời
 
 Sửa `src/config/greeting.js`:
 
-| Thuộc tính | Nội dung |
-| --- | --- |
-| `recipient` | Tên người nhận mặc định. |
-| `sender` | Tên hoặc chữ ký người gửi. |
-| `message` | Nội dung lời chúc. |
-| `colors` | Các màu chính: `ink`, `sage`, `rose`, `paper`. |
-| `audio` | Đường dẫn nhạc nền. |
-| `autoPlayMusic` | `true`: thử tự phát khi mở trang; nếu bị trình duyệt chặn thì phát sau lần chạm/bấm đầu tiên. `false`: chỉ phát bằng nút nhạc. |
-| `typingSpeed` | Tốc độ gõ lời chúc, tính bằng mili giây mỗi ký tự. Số lớn hơn sẽ gõ chậm hơn. |
-| `heroImage` | Đường dẫn ảnh chính. |
-| `backgroundImage` | Đường dẫn ảnh nền khu vườn tím. |
-| `flowerImages` | Ảnh riêng cho `violet`, `tulip`, `daisy`. Để trống để dùng SVG mặc định. |
+| Thuộc tính        | Nội dung                                                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `recipient`       | Tên người nhận mặc định.                                                                                                       |
+| `sender`          | Tên hoặc chữ ký người gửi.                                                                                                     |
+| `message`         | Nội dung lời chúc.                                                                                                             |
+| `colors`          | Các màu chính: `ink`, `sage`, `rose`, `paper`.                                                                                 |
+| `audio`           | Đường dẫn nhạc nền.                                                                                                            |
+| `autoPlayMusic`   | `true`: thử tự phát khi mở trang; nếu bị trình duyệt chặn thì phát sau lần chạm/bấm đầu tiên. `false`: chỉ phát bằng nút nhạc. |
+| `typingSpeed`     | Tốc độ gõ lời chúc, tính bằng mili giây mỗi ký tự. Số lớn hơn sẽ gõ chậm hơn.                                                  |
+| `heroImage`       | Đường dẫn ảnh chính.                                                                                                           |
+| `backgroundImage` | Đường dẫn ảnh nền khu vườn tím.                                                                                                |
+| `flowerImages`    | Ảnh riêng cho `violet`, `tulip`, `daisy`. Để trống để dùng SVG mặc định.                                                       |
 
 Đường dẫn tài nguyên tính từ `public/`, không thêm dấu `/` ở đầu. Ví dụ: `assets/images/violet-garden.webp`.
 
