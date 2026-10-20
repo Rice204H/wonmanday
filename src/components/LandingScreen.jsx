@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import {
-  ArrowDown,
   ArrowUpRight,
   Flower2,
   Heart,
@@ -13,6 +12,7 @@ export default function LandingScreen({
   recipient,
   heroImage,
   backgroundImage,
+  onExplore,
 }) {
   const art = useRef(null);
   const [imageError, setImageError] = useState(false);
@@ -65,9 +65,9 @@ export default function LandingScreen({
           <br className="desktop-br" /> những người làm thế giới này dịu dàng
           hơn.
         </p>
-        <a className="primary-button" href="#loi-chuc">
+        <button type="button" className="primary-button" onClick={onExplore}>
           Khám phá khu vườn <ArrowUpRight size={18} strokeWidth={1.5} />
-        </a>
+        </button>
         <div className="hero-footnote">
           <span className="tiny-flower">
             <Flower2 size={18} strokeWidth={1.25} />
@@ -132,10 +132,6 @@ export default function LandingScreen({
           </g>
         </svg>
       </div>
-      <a href="#khu-vuon" className="scroll-invitation">
-        <ArrowDown size={15} strokeWidth={1.4} />
-        <span>CHẬM LẠI MỘT CHÚT, ĐỂ YÊU THƯƠNG</span>
-      </a>
       <span className="hero-side-label" aria-hidden="true">
         A LITTLE LOVE, JUST FOR YOU
       </span>

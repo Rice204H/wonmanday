@@ -25,6 +25,8 @@ npm run preview
 
 ## Cá nhân hóa lời chúc
 
+Trang gồm bốn màn hình: chào mừng → khu vườn → thiệp → lời nhắn cuối. Dùng các nút phía dưới hoặc các chấm để chuyển màn hình; không cần cuộn trang. Nút Quay lại của trình duyệt và các liên kết có `#khu-vuon`, `#loi-chuc` vẫn hoạt động. Nhạc giữ nguyên khi chuyển màn hình. Với lời chúc quá dài hoặc khi phóng to chữ, nội dung thiệp mở có thể cuộn bên trong để không mất chữ.
+
 Sửa `src/config/greeting.js`:
 
 | Thuộc tính | Nội dung |
