@@ -1,7 +1,7 @@
 /** Personalize this file; paths below are relative to public/, without a leading slash. */
 export const greeting = {
   recipient: "bạn",
-  sender: "Một người luôn yêu thương bạn",
+  sender: "abc",
   message:
     "Nhân ngày Phụ nữ Việt Nam 20/10, chúc bạn luôn xinh đẹp theo cách riêng của mình, hạnh phúc, tự tin và luôn được yêu thương. Mong rằng mỗi ngày của bạn đều ngập tràn niềm vui, những điều tử tế và những khoảnh khắc đáng nhớ. Chúc bạn luôn tỏa sáng như những bông hoa đẹp nhất trong khu vườn cuộc đời!",
   colors: {
