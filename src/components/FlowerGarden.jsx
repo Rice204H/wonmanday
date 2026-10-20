@@ -304,7 +304,7 @@ function ConfigurableFlower({ kind, image }) {
   );
 }
 
-export default function FlowerGarden({ images = {} }) {
+export default function FlowerGarden({ images = {}, onContinue }) {
   const [selectedFlower, setSelectedFlower] = useState(null);
   const flowerButtons = useRef([]);
   const gardenId = useId().replace(/:/g, "");
@@ -409,10 +409,9 @@ export default function FlowerGarden({ images = {} }) {
             );
           })}
         </div>
-        <p className="garden-footnote">
-          <span aria-hidden="true" /> Một khu vườn nhỏ, dành riêng cho bạn{" "}
-          <span aria-hidden="true" />
-        </p>
+        <button className="garden-gift-action" type="button" onClick={onContinue}>
+          Còn một lá thư dành riêng cho bạn <ArrowUpRight size={16} aria-hidden="true" />
+        </button>
       </div>
     </section>
   );

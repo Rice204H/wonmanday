@@ -34,7 +34,7 @@ function LetterFlower({ className = "" }) {
   );
 }
 
-export default function GreetingCard({ greeting, recipient }) {
+export default function GreetingCard({ greeting, recipient, onContinue }) {
   const name = recipient?.trim() || greeting?.recipient?.trim() || "bạn";
   const sender = greeting?.sender?.trim() || "Một người luôn yêu thương bạn";
   const message = greeting?.message?.trim() || DEFAULT_MESSAGE;
@@ -312,7 +312,10 @@ export default function GreetingCard({ greeting, recipient }) {
                   <button
                     className="greeting-keep-button"
                     type="button"
-                    onClick={closeDialog}
+                    onClick={() => {
+                      closeDialog();
+                      onContinue?.();
+                    }}
                   >
                     Giữ lại một nụ cười{" "}
                     <ArrowUpRight
