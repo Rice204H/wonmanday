@@ -1,0 +1,646 @@
+.greeting-section {
+  background: #edf0e8;
+  color: var(--ink, #34483f);
+  padding: 114px 7.2% 110px;
+  overflow: hidden;
+  scroll-margin-top: 80px;
+}
+.greeting-inner {
+  max-width: 1192px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.03fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+.greeting-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.3px;
+  color: var(--sage, #66816d);
+  margin: 0 0 24px;
+}
+.greeting-eyebrow > span {
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+.greeting-intro h2 {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(38px, 4.25vw, 61px);
+  line-height: 1.12;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  margin: 0;
+}
+.greeting-intro h2 em {
+  color: var(--sage, #66816d);
+  font-weight: 400;
+}
+.greeting-description {
+  max-width: 390px;
+  color: var(--muted, #777d70);
+  line-height: 1.9;
+  font-size: 13px;
+  margin: 24px 0 24px;
+}
+.greeting-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 17px;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid #9da99b;
+  background: transparent;
+  color: var(--ink, #34483f);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    gap 0.2s;
+}
+.greeting-text-link:hover {
+  gap: 23px;
+  color: var(--rose, #b96e7e);
+}
+.greeting-text-link:focus-visible,
+.greeting-envelope:focus-visible,
+.greeting-close:focus-visible,
+.greeting-modal button:focus-visible,
+.greeting-manual-link input:focus-visible {
+  outline: 2px solid var(--rose, #b96e7e);
+  outline-offset: 7px;
+}
+.greeting-envelope-scene {
+  min-height: 350px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+.greeting-orbit {
+  position: absolute;
+  border: 1px solid rgba(102, 129, 109, 0.13);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+.greeting-orbit-one {
+  width: 330px;
+  height: 330px;
+}
+.greeting-orbit-two {
+  width: 398px;
+  height: 398px;
+}
+.greeting-envelope-note {
+  position: absolute;
+  top: 5px;
+  right: 24px;
+  transform: rotate(7deg);
+  color: #8a9686;
+  font: italic 17px var(--font-display, Georgia, serif);
+}
+.greeting-envelope {
+  position: relative;
+  display: block;
+  width: 300px;
+  height: 199px;
+  margin-top: 30px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  perspective: 1100px;
+  transform: rotate(-6deg);
+  transition: transform 0.35s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.greeting-envelope:hover {
+  transform: rotate(-3deg) translateY(-4px);
+}
+.greeting-envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #c4cbb8;
+  border-radius: 3px;
+  box-shadow: 0 20px 34px rgba(60, 77, 55, 0.11);
+}
+.greeting-envelope-letter {
+  position: absolute;
+  left: 19px;
+  top: 10px;
+  width: 262px;
+  height: 177px;
+  padding: 21px;
+  background: #fffdf7;
+  border: 1px solid #ede8db;
+  border-radius: 2px;
+  text-align: left;
+  overflow: hidden;
+  transition: transform 0.65s cubic-bezier(0.2, 0.65, 0.25, 1) 0.25s;
+  box-sizing: border-box;
+}
+.greeting-letter-mini-label {
+  display: block;
+  max-width: 195px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--sage, #66816d);
+  font: italic 15px var(--font-display, Georgia, serif);
+}
+.greeting-letter-mini-title {
+  display: block;
+  position: relative;
+  z-index: 1;
+  margin-top: 12px;
+  color: var(--ink, #34483f);
+  font: 23px/1.1 var(--font-display, Georgia, serif);
+}
+.greeting-letter-mini-line {
+  display: block;
+  width: 44px;
+  height: 1px;
+  margin-top: 14px;
+  background: #d9c5b1;
+}
+.greeting-letter-mini-flower {
+  position: absolute;
+  width: 68px;
+  height: 98px;
+  right: 8px;
+  bottom: -5px;
+  color: var(--sage, #66816d);
+  transform: rotate(10deg);
+  opacity: 0.8;
+}
+.greeting-envelope-pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 2px;
+  background:
+    linear-gradient(33deg, #d6dbc9 49.5%, transparent 50%) left bottom / 51%
+      100% no-repeat,
+    linear-gradient(-33deg, #ccd2be 49.5%, transparent 50%) right bottom / 51%
+      100% no-repeat;
+  filter: drop-shadow(0 -1px 0 rgba(87, 106, 79, 0.08));
+  pointer-events: none;
+}
+.greeting-envelope-pocket::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #d2d7c5;
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+  border-radius: 2px;
+}
+.greeting-envelope-flap {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 113px;
+  background: #dce0d1;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: 50% 0;
+  backface-visibility: visible;
+  transition:
+    transform 0.6s ease,
+    z-index 0s 0.3s;
+  filter: drop-shadow(0 2px 1px rgba(76, 90, 65, 0.08));
+}
+.greeting-wax-seal {
+  position: absolute;
+  z-index: 4;
+  left: 127px;
+  top: 87px;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 48% 50% 45% 48%;
+  color: #f4d8db;
+  background: #b77986;
+  box-shadow:
+    0 3px 5px #94657433,
+    inset 0 0 0 3px #b07480,
+    inset 0 0 0 4px #ca939d;
+  transition:
+    opacity 0.2s,
+    transform 0.35s;
+}
+.greeting-envelope.is-open .greeting-envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+.greeting-envelope.is-open .greeting-envelope-letter {
+  transform: translateY(-83px);
+}
+.greeting-envelope.is-open .greeting-wax-seal {
+  transform: translateY(8px) scale(0.8);
+  opacity: 0;
+}
+.greeting-envelope-hint {
+  position: absolute;
+  top: calc(50% + 139px);
+  margin: 0;
+  color: var(--muted, #777d70);
+  font-size: 10px;
+  letter-spacing: 0.35px;
+  text-align: center;
+}
+.greeting-scene-flower {
+  position: absolute;
+  width: 95px;
+  height: 137px;
+  right: -3px;
+  bottom: 0;
+  color: var(--sage, #66816d);
+  transform: rotate(22deg);
+  opacity: 0.67;
+  pointer-events: none;
+}
+.greeting-modal-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: #24362dd1;
+  backdrop-filter: blur(7px);
+  display: grid;
+  place-items: center;
+  padding: 28px 20px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  animation: greeting-backdrop-in 0.25s ease both;
+}
+.greeting-modal {
+  position: relative;
+  color: var(--ink, #34483f);
+  width: min(100%, 610px);
+  max-height: calc(100dvh - 56px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--paper, #faf8f2);
+  border: 1px solid #f0eadd;
+  border-radius: 4px;
+  box-shadow: 0 30px 100px #10231d42;
+  animation: greeting-letter-in 0.5s cubic-bezier(0.15, 0.65, 0.25, 1) both;
+  scrollbar-width: thin;
+  scrollbar-color: #c6cabb transparent;
+}
+.greeting-modal::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 14px;
+  border: 1px solid #e3e4d8;
+}
+.greeting-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #717e6c;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.greeting-close:hover {
+  background: #e9ecdf;
+}
+.greeting-modal-content {
+  position: relative;
+  padding: 39px 52px 28px;
+  animation: greeting-content-in 0.65s ease 0.1s both;
+}
+.greeting-modal-topline {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-right: 30px;
+  color: var(--sage, #66816d);
+  font-size: 8px;
+  letter-spacing: 1.6px;
+}
+.greeting-modal-topline > span:first-child {
+  padding-right: 13px;
+  border-right: 1px solid #c2cbb8;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.greeting-modal-flower-wrap {
+  text-align: center;
+  margin: 10px 0 -5px;
+}
+.greeting-modal-flower {
+  width: 69px;
+  height: 99px;
+  color: var(--sage, #66816d);
+}
+.greeting-modal-kicker {
+  text-align: center;
+  color: var(--sage, #66816d);
+  margin: 7px 0 13px;
+  font-size: 8px;
+  letter-spacing: 2.7px;
+}
+.greeting-modal h2 {
+  font: 400 43px/1.1 var(--font-display, Georgia, serif);
+  text-align: center;
+  letter-spacing: -0.3px;
+  margin: 0 0 27px;
+  overflow-wrap: anywhere;
+}
+.greeting-modal h2 em {
+  font-weight: 400;
+  color: var(--rose, #b96e7e);
+}
+.greeting-message {
+  font-size: 13px;
+  line-height: 1.95;
+  color: #70776b;
+}
+.greeting-message p {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  margin: 0 0 15px;
+}
+.greeting-signature {
+  text-align: center;
+  padding: 7px 0 20px;
+}
+.greeting-signature > span {
+  font-size: 10px;
+  color: #949985;
+}
+.greeting-signature p {
+  font: italic 22px/1.3 var(--font-display, Georgia, serif);
+  color: var(--sage, #66816d);
+  overflow-wrap: anywhere;
+  margin: 5px 0 10px;
+}
+.greeting-signature > svg {
+  color: var(--rose, #b96e7e);
+}
+.greeting-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  border-top: 1px solid #e4e6d9;
+  padding-top: 21px;
+}
+.greeting-share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid #536e59;
+  border-radius: 3px;
+  background: #536e59;
+  padding: 13px 17px;
+  color: #fffdf6;
+  font: inherit;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.greeting-share-button:hover {
+  background: #425d49;
+}
+.greeting-share-button:disabled {
+  cursor: progress;
+  opacity: 0.65;
+}
+.greeting-keep-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--sage, #66816d);
+  font: inherit;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 10px 0;
+}
+.greeting-keep-button:hover {
+  color: var(--rose, #b96e7e);
+}
+.greeting-share-feedback {
+  margin: 12px auto 0;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #737c6b;
+  text-align: center;
+}
+.greeting-share-feedback:empty {
+  margin: 0;
+}
+.greeting-manual-link {
+  display: block;
+  margin: 15px 0 0;
+  color: var(--sage, #66816d);
+  font-size: 10px;
+}
+.greeting-manual-link input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 7px;
+  border: 1px solid #ccd2c0;
+  border-radius: 2px;
+  padding: 10px;
+  background: #fffdf7;
+  color: #536e59;
+  font: inherit;
+  font-size: 11px;
+}
+@keyframes greeting-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes greeting-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes greeting-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 1000px) {
+  .greeting-section {
+    padding: 90px 6%;
+  }
+  .greeting-inner {
+    gap: 25px;
+  }
+  .greeting-orbit-two {
+    width: 340px;
+    height: 340px;
+  }
+  .greeting-orbit-one {
+    width: 290px;
+    height: 290px;
+  }
+  .greeting-envelope {
+    width: 270px;
+    height: 180px;
+  }
+  .greeting-envelope-letter {
+    left: 17px;
+    width: 236px;
+    height: 160px;
+    padding: 18px;
+  }
+  .greeting-envelope-flap {
+    height: 102px;
+  }
+  .greeting-wax-seal {
+    left: 114px;
+    top: 78px;
+    width: 42px;
+    height: 42px;
+  }
+  .greeting-envelope-note {
+    right: 0;
+    top: 18px;
+    font-size: 15px;
+  }
+  .greeting-scene-flower {
+    right: -15px;
+    bottom: 8px;
+    width: 77px;
+  }
+}
+@media (max-width: 700px) {
+  .greeting-section {
+    padding: 70px 7% 61px;
+  }
+  .greeting-inner {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+  .greeting-intro h2 {
+    font-size: clamp(39px, 7.5vw, 52px);
+  }
+  .greeting-eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.7px;
+    margin-bottom: 19px;
+  }
+  .greeting-description {
+    font-size: 12px;
+    max-width: 370px;
+    margin-top: 19px;
+  }
+  .greeting-envelope-scene {
+    min-height: 335px;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .greeting-envelope-note {
+    right: 16px;
+    top: 14px;
+  }
+  .greeting-envelope-hint {
+    top: calc(50% + 127px);
+    font-size: 9px;
+  }
+  .greeting-scene-flower {
+    right: 3px;
+    bottom: 14px;
+    width: 80px;
+  }
+  .greeting-modal-backdrop {
+    padding: 16px 12px;
+  }
+  .greeting-modal {
+    max-height: calc(100dvh - 32px);
+  }
+  .greeting-modal-content {
+    padding: 35px 30px 26px;
+  }
+  .greeting-modal::before {
+    inset: 10px;
+  }
+  .greeting-close {
+    top: 15px;
+    right: 15px;
+  }
+  .greeting-modal h2 {
+    font-size: 37px;
+  }
+  .greeting-message {
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  .greeting-modal-actions {
+    gap: 11px;
+    flex-wrap: wrap;
+  }
+  .greeting-share-button {
+    font-size: 10px;
+  }
+  .greeting-modal-topline {
+    font-size: 7px;
+    letter-spacing: 1px;
+    gap: 9px;
+  }
+}
+@media (max-width: 350px) {
+  .greeting-envelope {
+    transform: rotate(-4deg) scale(0.87);
+  }
+  .greeting-envelope:hover {
+    transform: rotate(-3deg) scale(0.87);
+  }
+  .greeting-modal-content {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  .greeting-modal h2 {
+    font-size: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .greeting-section *,
+  .greeting-modal-backdrop,
+  .greeting-modal-backdrop * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,285 @@
+.landing {
+  isolation: isolate;
+}
+.violet-background {
+  position: absolute;
+  z-index: -1;
+  inset: 0 calc((1320px - 100vw) / 2);
+  overflow: hidden;
+  pointer-events: none;
+  background: #f3f0f4;
+}
+.violet-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 66%;
+  opacity: 0.3;
+  animation: violet-pan 19s ease-in-out infinite alternate;
+  transform-origin: 50% 75%;
+  will-change: transform;
+}
+.violet-background-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #faf8f5f5 1%, #faf8f5dc 35%, #faf8f570 80%),
+    linear-gradient(
+      0deg,
+      #faf8f5 0%,
+      transparent 25%,
+      transparent 70%,
+      #faf8f5a0
+    );
+}
+.hero-image {
+  animation: violet-pan 15s ease-in-out infinite alternate;
+  transform-origin: 50% 75%;
+  object-position: 68% 50%;
+}
+.hero-image-frame {
+  background: #e4dfea;
+}
+.hero-glow {
+  background: linear-gradient(160deg, #fff7f522, transparent 60%, #7a5e9b18);
+}
+.floating-note > span {
+  background: #ece4f2;
+  color: #9272ac;
+}
+.date-stamp {
+  background: #f7f3f5ed;
+  border-color: #cfc3d8;
+  color: #756584;
+}
+.date-stamp svg {
+  color: #a48ab5;
+}
+.hero-eyebrow {
+  color: #7d6f86;
+}
+.eyebrow-year {
+  color: var(--rose);
+}
+.arch-outline {
+  border-color: #c7bfd0;
+}
+.hero-sprig {
+  color: #9b8baa;
+}
+.garden-ribbon {
+  background: #efedf2;
+  border-color: #ded8e4;
+  color: #7d7284;
+}
+.garden-ribbon svg {
+  color: #a395af;
+}
+.flower-garden {
+  background: #f5f2f4;
+}
+.greeting-section {
+  background: #eeedf0;
+}
+.greeting-intro h2 em {
+  color: var(--rose);
+}
+.garden-intro h2 em {
+  color: var(--rose);
+}
+.falling-petals > span {
+  background: linear-gradient(135deg, #c8afe1, #a084bb88);
+}
+.violet-stem-left,
+.violet-stem-right {
+  position: absolute;
+  bottom: -45px;
+  width: 110px;
+  height: 195px;
+  opacity: 0.37;
+  transform-origin: 50% 100%;
+  animation: violet-stem-breeze 8s ease-in-out infinite alternate;
+}
+.violet-stem-left {
+  left: 1%;
+  rotate: -16deg;
+}
+.violet-stem-right {
+  right: 1%;
+  rotate: 16deg;
+  animation-delay: -4s;
+}
+.motion-control {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #faf8f2eb;
+  backdrop-filter: blur(8px);
+  border: 1px solid #c9c6cc;
+  border-radius: 24px;
+  font-size: 8px;
+  padding: 10px 13px;
+  color: #6c6177;
+  min-height: 38px;
+}
+.motion-control:hover {
+  background: #f0eaf4;
+}
+.motion-paused
+  :is(
+    .violet-background-image,
+    .hero-image,
+    .violet-stem-left,
+    .violet-stem-right,
+    .garden-plant,
+    .firefly,
+    .falling-petals > span
+  ) {
+  animation-play-state: paused !important;
+}
+.motion-paused .hero-visual {
+  transform: none !important;
+}
+.hero-description {
+  overflow-wrap: anywhere;
+}
+.motion-control > svg {
+  flex-shrink: 0;
+}
+@keyframes violet-pan {
+  from {
+    transform: scale(1.025) translate3d(-0.4%, 0.3%, 0) rotate(-0.2deg);
+  }
+  to {
+    transform: scale(1.09) translate3d(0.8%, -0.3%, 0) rotate(0.3deg);
+  }
+}
+@keyframes violet-stem-breeze {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(4deg);
+  }
+}
+@media (max-width: 1320px) {
+  .violet-background {
+    inset: 0;
+  }
+}
+@media (max-width: 760px) {
+  .violet-background-image {
+    opacity: 0.25;
+  }
+  .violet-background-wash {
+    background:
+      linear-gradient(90deg, #faf8f5eb, #faf8f5a0 75%),
+      linear-gradient(0deg, #faf8f5, transparent 40%);
+  }
+  .motion-control {
+    bottom: 20px;
+    left: 16px;
+  }
+  .violet-stem-left {
+    left: -20px;
+  }
+  .violet-stem-right {
+    right: -20px;
+  }
+}
+@media (max-width: 520px) {
+  .violet-background-image {
+    object-position: 55% 40%;
+    opacity: 0.28;
+  }
+  .violet-background-wash {
+    background: linear-gradient(
+      180deg,
+      #faf8f5f2 0%,
+      #faf8f5bd 47%,
+      #faf8f550 80%,
+      #faf8f5 100%
+    );
+  }
+  .violet-stem-left,
+  .violet-stem-right {
+    bottom: 10px;
+    opacity: 0.3;
+    width: 85px;
+  }
+  .motion-control {
+    font-size: 7px;
+    padding: 10px;
+    min-height: 40px;
+  }
+  .hero-image {
+    object-position: 68% 50%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .violet-background-image,
+  .hero-image,
+  .violet-stem-left,
+  .violet-stem-right {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+  .motion-control {
+    display: none;
+  }
+}
+.site-header nav > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.motion-control {
+  min-height: 44px;
+}
+.scroll-invitation {
+  min-height: 44px;
+}
+.greeting-close,
+.garden-wish-close {
+  width: 44px;
+  height: 44px;
+}
+.garden-wish-label {
+  padding-right: 21px;
+}
+.greeting-share-button,
+.greeting-keep-button {
+  min-height: 44px;
+}
+.greeting-message {
+  color: #62695f;
+}
+.greeting-envelope-letter {
+  overflow-wrap: anywhere;
+}
+.music-player__toggle {
+  min-height: 44px;
+}
+.music-player__settings {
+  width: 44px;
+  height: 44px;
+}
+.music-player__mute {
+  flex-basis: 44px;
+  height: 44px;
+}
+.garden-custom-flower {
+  width: 100%;
+  max-width: 280px;
+  height: 330px;
+  object-fit: contain;
+}
+
+@media (min-width: 521px) and (max-width: 760px) {
+  .hero-copy h1 { font-size: clamp(38px, 6.8vw, 50px); }
+}
