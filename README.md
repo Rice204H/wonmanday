@@ -1,6 +1,6 @@
 # Khu vườn yêu thương · 20/10
 
-Website chúc mừng Ngày Phụ nữ Việt Nam, được xây dựng bằng **React + Vite**. Giao diện có lời chúc cá nhân hóa, hoa minh họa, khu vườn tím chuyển động nhẹ và nhạc piano do người xem chủ động bật.
+Website chúc mừng Ngày Phụ nữ Việt Nam, được xây dựng bằng **React + Vite**. Giao diện có lời chúc cá nhân hóa với hiệu ứng gõ từng ký tự, hoa minh họa, khu vườn tím chuyển động nhẹ và nhạc nền tùy chỉnh.
 
 ## Chạy trên máy
 
@@ -34,6 +34,8 @@ Sửa `src/config/greeting.js`:
 | `message` | Nội dung lời chúc. |
 | `colors` | Các màu chính: `ink`, `sage`, `rose`, `paper`. |
 | `audio` | Đường dẫn nhạc nền. |
+| `autoPlayMusic` | `true`: thử tự phát khi mở trang; nếu bị trình duyệt chặn thì phát sau lần chạm/bấm đầu tiên. `false`: chỉ phát bằng nút nhạc. |
+| `typingSpeed` | Tốc độ gõ lời chúc, tính bằng mili giây mỗi ký tự. Số lớn hơn sẽ gõ chậm hơn. |
 | `heroImage` | Đường dẫn ảnh chính. |
 | `backgroundImage` | Đường dẫn ảnh nền khu vườn tím. |
 | `flowerImages` | Ảnh riêng cho `violet`, `tulip`, `daisy`. Để trống để dùng SVG mặc định. |
@@ -54,11 +56,11 @@ Các tài nguyên cần thiết được lưu sẵn trong dự án; không cần
 
 - `public/assets/images/`: ảnh trang và ảnh khu vườn tím. Tranh tím được tạo bằng công cụ ImageGen tích hợp.
 - Hoa SVG: minh họa gốc được tạo cho website.
-- `public/assets/audio/garden-piano.wav`: bản nhạc piano tổng hợp gốc, dài 36 giây. Xem thông tin nguồn gốc trong `public/assets/audio/README.md`.
+- `public/assets/audio/nhacmp3.mp3`: file nhạc tùy chỉnh hiện được sử dụng. Đường dẫn cấu hình phải khớp tên và đuôi file.
 
 Ảnh `assets/images/violet-garden.webp` được tạo chuyển động nhẹ bằng CSS. Khi người xem bật chế độ giảm chuyển động (`prefers-reduced-motion`), nền hiển thị tĩnh.
 
-Để thay nhạc, đặt một tệp MP3 mà bạn có quyền sử dụng vào `public/assets/audio/`, rồi đổi `audio` trong cấu hình. Nhạc chỉ phát sau thao tác bấm của người xem, theo chính sách trình duyệt; có nút phát/tạm dừng và thanh âm lượng.
+Để thay nhạc, đặt một tệp MP3 mà bạn có quyền sử dụng vào `public/assets/audio/`, rồi đổi `audio` trong cấu hình cho khớp chính xác tên và đuôi tệp. Khi `autoPlayMusic: true`, trang thử phát nhạc ở âm lượng 30% ngay khi mở. Nếu trình duyệt chặn tự phát có âm thanh, nhạc bắt đầu sau lần chạm/bấm hoặc phím tương tác đầu tiên. Nút phát/tạm dừng và thanh âm lượng luôn khả dụng; sau khi người xem chủ động tạm dừng, các lần bấm tiếp theo không tự bật lại nhạc.
 
 Chia sẻ bằng tính năng chia sẻ của thiết bị và sao chép bằng clipboard phụ thuộc vào hỗ trợ của trình duyệt, thường cần HTTPS hoặc localhost. Nếu trình duyệt không cho phép, dùng liên kết hiển thị để sao chép thủ công.
 

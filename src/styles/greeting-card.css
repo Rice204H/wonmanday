@@ -380,6 +380,71 @@
   overflow-wrap: anywhere;
   margin: 0 0 15px;
 }
+.letter-typewriter-text {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  text-align: inherit;
+}
+.letter-typewriter-reserve,
+.letter-typewriter-value {
+  grid-area: 1 / 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.letter-typewriter-reserve {
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.letter-typewriter-cursor {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+  vertical-align: baseline;
+  animation: letter-cursor-blink 0.85s steps(2, jump-none) infinite;
+}
+.letter-typewriter-cursor::after {
+  content: "";
+  position: absolute;
+  bottom: -0.12em;
+  left: 2px;
+  width: 1px;
+  height: 1em;
+  background: var(--rose, #9173ae);
+}
+.letter-typewriter-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+.letter-typewriter-controls {
+  display: flex;
+  justify-content: center;
+  margin: -10px 0 12px;
+}
+.letter-typewriter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--sage, #707a69);
+  font-size: 10px;
+}
+.letter-typewriter-toggle:hover { background: #e9e5ed; }
+@keyframes letter-cursor-blink {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 .greeting-signature {
   text-align: center;
   padding: 7px 0 20px;
@@ -636,6 +701,8 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .letter-typewriter-controls,
+  .letter-typewriter-cursor { display: none; }
   .greeting-section *,
   .greeting-modal-backdrop,
   .greeting-modal-backdrop * {

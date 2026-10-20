@@ -16,12 +16,16 @@ function resolveTrack(track) {
 }
 
 export default function MusicPlayer({
-  track = "assets/audio/garden-piano.wav",
+  track = "assets/audio/nhacmp3.mp3",
+  autoPlay = true,
 }) {
   const audioRef = useRef(null);
   const playerRef = useRef(null);
   const settingsRef = useRef(null);
   const previousVolume = useRef(0.3);
+  const volumeRef = useRef(0.3);
+  const autoStartPending = useRef(false);
+  const cancelAutoStartRef = useRef(null);
   const volumeId = useId();
   const panelId = useId();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -29,18 +33,78 @@ export default function MusicPlayer({
   const [panelOpen, setPanelOpen] = useState(false);
   const [volume, setVolume] = useState(0.3);
   const [error, setError] = useState("");
+  const [awaitingGesture, setAwaitingGesture] = useState(false);
   const source = resolveTrack(track);
 
   useEffect(() => {
     const audio = audioRef.current;
+    let cancelled = false;
+    let attempting = false;
     audio.pause();
+    audio.volume = volumeRef.current;
     setIsPlaying(false);
     setIsLoading(false);
     setError("");
-    return () => audio.pause();
-  }, [source]);
+    setAwaitingGesture(false);
+    autoStartPending.current = autoPlay;
+
+    function removeGestureListeners() {
+      document.removeEventListener("click", onGesture, true);
+      document.removeEventListener("touchend", onGesture, true);
+      document.removeEventListener("keydown", onGesture, true);
+    }
+    function stopAutoStart() {
+      autoStartPending.current = false;
+      removeGestureListeners();
+    }
+    cancelAutoStartRef.current = stopAutoStart;
+
+    async function tryAutoStart() {
+      if (cancelled || attempting || !autoStartPending.current) return;
+      attempting = true;
+      try {
+        // Call play inside the gesture handler, before any asynchronous work.
+        await audio.play();
+        if (cancelled || !autoStartPending.current) return;
+        stopAutoStart();
+        setAwaitingGesture(false);
+      } catch (playError) {
+        if (cancelled || !autoStartPending.current) return;
+        if (playError.name === "NotAllowedError") {
+          setAwaitingGesture(true);
+        } else if (playError.name !== "AbortError") {
+          stopAutoStart();
+          setError("Chưa mở được nhạc. Bạn thử lại nhé.");
+        }
+      } finally {
+        attempting = false;
+      }
+    }
+    function onGesture(event) {
+      // The player's own controls handle playback without a second auto-play call.
+      if (!event.isTrusted || playerRef.current?.contains(event.target)) return;
+      if (event.type === "keydown" &&
+          (event.ctrlKey || event.metaKey || event.altKey ||
+           ["Escape", "Tab", "Shift", "Control", "Alt", "Meta"].includes(event.key))) return;
+      void tryAutoStart();
+    }
+
+    if (autoPlay) {
+      document.addEventListener("click", onGesture, true);
+      document.addEventListener("touchend", onGesture, { capture: true, passive: true });
+      document.addEventListener("keydown", onGesture, true);
+      void tryAutoStart();
+    }
+    return () => {
+      cancelled = true;
+      stopAutoStart();
+      cancelAutoStartRef.current = null;
+      audio.pause();
+    };
+  }, [source, autoPlay]);
 
   useEffect(() => {
+    volumeRef.current = volume;
     if (audioRef.current) audioRef.current.volume = volume;
   }, [volume]);
 
@@ -66,6 +130,9 @@ export default function MusicPlayer({
   async function togglePlayback() {
     const audio = audioRef.current;
     if (!audio) return;
+    // A deliberate pause must remain paused on subsequent page interactions.
+    cancelAutoStartRef.current?.();
+    setAwaitingGesture(false);
     setPanelOpen(true);
     if (!audio.paused) {
       audio.pause();
@@ -101,7 +168,7 @@ export default function MusicPlayer({
       ? "Thử lại nhạc"
       : isPlaying
         ? "Đang phát"
-        : "Bật nhạc";
+        : awaitingGesture ? "Chạm để nghe" : "Bật nhạc";
 
   return (
     <aside
@@ -113,11 +180,13 @@ export default function MusicPlayer({
         ref={audioRef}
         src={source}
         loop
-        preload="none"
+        preload={autoPlay ? "auto" : "none"}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onPlaying={() => setIsLoading(false)}
         onError={() => {
+          cancelAutoStartRef.current?.();
+          setAwaitingGesture(false);
           setIsPlaying(false);
           setIsLoading(false);
           setError("Chưa mở được nhạc. Bạn thử lại nhé.");
@@ -210,7 +279,9 @@ export default function MusicPlayer({
         </button>
       </div>
       <span className="music-player__sr-only" role="status" aria-live="polite">
-        {isPlaying ? "Nhạc nền đang phát." : "Nhạc nền đang tạm dừng."}
+        {isPlaying ? "Nhạc nền đang phát." : awaitingGesture
+          ? "Chạm vào trang hoặc bấm Bật nhạc để nghe nhạc nền."
+          : "Nhạc nền đang tạm dừng."}
       </span>
     </aside>
   );

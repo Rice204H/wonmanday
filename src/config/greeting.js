@@ -11,6 +11,9 @@ export const greeting = {
     paper: "#faf8f5",
   },
   audio: "assets/audio/nhacmp3.mp3",
+  autoPlayMusic: true,
+  // Milliseconds per character; a larger value makes the typing slower.
+  typingSpeed: 24,
   heroImage: "assets/images/violet-garden.webp",
   backgroundImage: "assets/images/violet-garden.webp",
   // Leave empty to use the original SVG flowers, or supply paths relative to public/.

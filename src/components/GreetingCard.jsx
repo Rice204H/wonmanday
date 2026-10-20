@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUpRight, Heart, Share2, X } from "lucide-react";
 import "../styles/greeting-card.css";
+import TypewriterLetter from "./TypewriterLetter.jsx";
 
 const DEFAULT_MESSAGE =
   "Chúc bạn một ngày 20/10 thật dịu dàng, ngập tràn niềm vui và những điều xinh đẹp. Cảm ơn bạn vì đã luôn là chính mình — một người phụ nữ đáng mến, mạnh mẽ và rạng rỡ theo cách rất riêng.\n\nMong bạn luôn được yêu thương, được lắng nghe, và có đủ bình yên để làm những điều mình thích. Hôm nay và cả những ngày sau, hãy dành một chút yêu thương cho chính mình nhé.";
@@ -297,20 +298,7 @@ export default function GreetingCard({ greeting, recipient }) {
                   <LetterFlower className="greeting-modal-flower" />
                 </div>
                 <p className="greeting-modal-kicker">MỘT NGÀY THẬT ĐẸP</p>
-                <h2 id="greeting-dialog-heading">
-                  Gửi {name},<br />
-                  <em>bằng cả yêu thương.</em>
-                </h2>
-                <div id="greeting-dialog-message" className="greeting-message">
-                  {message.split(/\n\s*\n/).map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
-                </div>
-                <div className="greeting-signature">
-                  <span>Thương mến,</span>
-                  <p>{sender}</p>
-                  <Heart size={15} strokeWidth={1.4} aria-hidden="true" />
-                </div>
+                <TypewriterLetter name={name} message={message} sender={sender} speed={greeting?.typingSpeed} />
                 <div className="greeting-modal-actions">
                   <button
                     className="greeting-share-button"

@@ -76,7 +76,7 @@ export default function App() {
         </p>
         <a href="#dau-trang">Trở về đầu trang ↑</a>
       </footer>
-      <MusicPlayer track={greeting.audio} />
+      <MusicPlayer track={greeting.audio} autoPlay={greeting.autoPlayMusic} />
       <button
         type="button"
         className="motion-control"
